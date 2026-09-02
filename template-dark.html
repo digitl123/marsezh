@@ -1,0 +1,873 @@
+<style>
+/* =======================================================================
+   МАРСЭЖ — тёмная версия.
+   Структура, типографика и приёмы взяты с референса Behance
+   «Personal Website» (Vadym Oliinyk): #060606, Manrope, крупные заголовки
+   с серой второй половиной, белые пилюли-кнопки, карточки 01–03 с одной
+   залитой акцентом, чередование тёмных и светлой секций, стеклянная
+   карточка-визитка и «призрачный» заголовок за блоком услуг.
+   Акцент — терракота с аватарки и хайлайтов @marsezh.ai.
+   Страница осознанно одноцветная: светлой темы у неё нет.
+   ======================================================================= */
+:root{
+  --void:#060606;
+  --panel:#0c0c0c;
+  --panel-2:#151515;
+  --glass:rgba(255,255,255,.055);
+  --line:rgba(255,255,255,.12);
+  --line-2:rgba(255,255,255,.26);
+  --paper:#ffffff;
+  --dim:#8d8d8d;          /* серая половина заголовков — приём референса */
+  --smoke:#a2a2a2;
+  --smoke-2:#6c6c6c;
+  --clay:#d68a6b;
+  --clay-hi:#f0b294;
+  --clay-deep:#8e4e38;
+  --clay-glow:rgba(214,138,107,.24);
+  --ok:#5fd08a;
+  --maxw:1320px;
+  --hh:78px;
+}
+
+*{box-sizing:border-box}
+body{
+  margin:0; background:var(--void); color:var(--paper);
+  font-family:"Manrope","Helvetica Neue",Arial,sans-serif;
+  font-size:17px; line-height:1.6; -webkit-font-smoothing:antialiased;
+  overflow-x:hidden;
+}
+img{max-width:100%; display:block}
+a{color:inherit}
+::selection{background:var(--clay); color:#1a0d07}
+:focus-visible{outline:2px solid var(--clay); outline-offset:3px; border-radius:6px}
+
+.wrap{max-width:var(--maxw); margin:0 auto; padding:0 34px}
+.tnum{font-variant-numeric:tabular-nums}
+
+h1,h2,h3{margin:0; text-wrap:balance; font-weight:800; letter-spacing:-.045em}
+h1{font-size:clamp(38px,4.6vw,64px); line-height:1.02}
+h2{font-size:clamp(29px,3.5vw,50px); line-height:1.05}
+h3{font-size:21px; line-height:1.2; letter-spacing:-.03em}
+p{margin:0}
+.dimtext{color:var(--dim)}
+
+.eyebrow{font-size:12.5px; font-weight:600; color:var(--smoke-2); letter-spacing:.01em}
+.cap{font-size:11px; font-weight:800; letter-spacing:.2em; text-transform:uppercase; color:var(--smoke-2)}
+
+/* компактная пилюля со стрелкой в кружке.
+   Наведение меняет только цвет: никаких сдвигов, иначе стрелка дёргается. */
+.pill{display:inline-flex; align-items:center; justify-content:center; gap:12px;
+  height:38px; padding:0 5px 0 20px; border-radius:999px; text-decoration:none;
+  font-size:13.5px; font-weight:600; letter-spacing:-.005em; white-space:nowrap;
+  background:var(--paper); color:#060606;
+  transition:background .22s ease, color .22s ease, border-color .22s ease}
+.pill .chip{width:28px; height:28px; border-radius:50%; flex:none;
+  display:grid; place-items:center; background:#060606; color:#ffffff;
+  transition:background .22s ease, color .22s ease, border-color .22s ease}
+.pill .chip svg{width:12px; height:12px}
+.pill:hover{background:var(--clay-hi)}
+.pill.ghost{background:transparent; color:var(--paper);
+  border:1px solid rgba(255,255,255,.22); padding:0 4px 0 19px}
+.pill.ghost .chip{background:transparent; color:var(--paper);
+  border:1px solid rgba(255,255,255,.28)}
+.pill.ghost:hover{background:transparent; border-color:var(--paper)}
+.pill.ghost:hover .chip{background:var(--paper); color:#060606; border-color:var(--paper)}
+
+/* круглые иконки соцсетей — форма из референса, цвет его */
+.circles{display:flex; gap:10px}
+.circ{width:44px; height:44px; border-radius:50%; display:grid; place-items:center;
+  background:var(--clay); color:#1a0d07; text-decoration:none;
+  transition:background .2s, transform .2s}
+.circ:hover{background:var(--clay-hi); transform:translateY(-3px)}
+.circ svg{width:19px; height:19px}
+
+/* ============ шапка ============ */
+header{position:sticky; top:0; z-index:80; padding:18px 0;
+  background:rgba(6,6,6,.72); backdrop-filter:blur(18px) saturate(140%);
+  border-bottom:1px solid transparent; transition:border-color .3s}
+header.stuck{border-bottom-color:var(--line)}
+.hbar{position:relative; display:flex; align-items:center; gap:20px}
+.logo{display:flex; align-items:center; gap:11px; text-decoration:none; flex:none}
+.logo .bead{width:28px; height:28px; border-radius:9px; flex:none;
+  background:radial-gradient(120% 120% at 32% 26%, var(--clay-hi), var(--clay) 46%, var(--clay-deep));
+  box-shadow:0 6px 22px -8px var(--clay-glow)}
+.logo b{font-weight:800; font-size:19px; letter-spacing:-.02em}
+nav{display:flex; gap:2px; position:absolute; left:50%; translate:-50% 0}
+.head-soc{display:flex; gap:8px; margin-left:auto}
+.logo{margin-right:auto}
+.head-soc.centred{position:absolute; margin:0; translate:-50% 0}
+.head-soc .circ{width:36px; height:36px}
+.head-soc .circ svg{width:16px; height:16px}
+nav a{text-decoration:none; font-size:14px; font-weight:600; color:var(--smoke);
+  padding:9px 15px; border-radius:999px; white-space:nowrap; transition:color .18s, background .18s}
+nav a:hover{color:var(--paper); background:var(--panel-2)}
+nav a.on{color:var(--clay); background:var(--panel-2)}
+.role-tag{flex:none; margin-left:52px; font-size:14px; font-weight:600; color:var(--smoke)}
+.burger{display:none; background:none; border:1px solid var(--line-2); color:var(--paper);
+  border-radius:999px; padding:9px 17px; font:inherit; font-weight:700; font-size:13px; cursor:pointer}
+@media(max-width:1080px){
+  :root{--hh:70px}
+  nav{display:none; position:absolute; top:100%; left:0; right:0; translate:0 0;
+    flex-direction:column; gap:0; background:var(--panel);
+    border-block:1px solid var(--line); padding:10px; margin:0}
+  .logo{margin-right:0}
+  nav.open{display:flex}
+  nav a{padding:14px 16px; border-radius:12px}
+  .role-tag{display:none}
+  .burger{display:block}
+}
+
+/* ============ ПЕРВЫЙ ЭКРАН ============ */
+.hero{position:relative; min-height:calc(100svh - var(--hh)); overflow:hidden;
+  display:flex; align-items:stretch; padding:24px 0 34px}
+.hero > .wrap{width:100%; position:relative;
+  display:grid; grid-template-columns:minmax(0,1.02fr) minmax(0,.98fr); gap:40px}
+.hero-photo{position:absolute; z-index:1; left:29%; bottom:9%; height:100%; pointer-events:none}
+/* затемнение слева, чтобы заголовок читался поверх фотографии */
+.hero-scrim{position:absolute; inset:0; z-index:2; pointer-events:none;
+  background:linear-gradient(100deg, #060606 18%, rgba(6,6,6,.72) 34%, rgba(6,6,6,0) 58%)}
+.hero-photo img{height:100%; width:auto; max-width:none; object-fit:contain}
+
+.hero-l{position:relative; z-index:3;
+  display:flex; flex-direction:column; justify-content:space-between; gap:40px}
+.hero-l h1{margin-top:8px}
+.hero-l .role{margin-top:18px; font-size:17px; color:var(--smoke)}
+.acts{display:flex; flex-wrap:wrap; gap:12px}
+.hero-bottom{max-width:390px}
+.hero-bottom p{font-size:14.5px; color:var(--smoke); line-height:1.55}
+.hero-thumbs{display:grid; grid-template-columns:repeat(3,1fr); gap:12px; margin-top:20px}
+.hero-thumbs a{position:relative; display:block; border-radius:12px; overflow:hidden;
+  aspect-ratio:9/14; border:1px solid var(--line); text-decoration:none;
+  transition:transform .3s, border-color .3s}
+.hero-thumbs a:hover{transform:translateY(-4px); border-color:var(--clay)}
+.hero-thumbs img{width:100%; height:100%; object-fit:cover}
+.hero-thumbs span{position:absolute; left:8px; bottom:7px; font-size:12px; font-weight:800;
+  letter-spacing:-.02em; text-shadow:0 2px 10px rgba(0,0,0,.9)}
+
+.hero-r{position:relative; z-index:3;
+  display:flex; flex-direction:column; align-items:flex-end; justify-content:flex-end; gap:30px}
+.avail{display:flex; align-items:center; gap:9px; font-size:11.5px; font-weight:800;
+  letter-spacing:.14em; text-transform:uppercase; color:var(--paper); text-align:right}
+.avail i{width:9px; height:9px; border-radius:50%; background:var(--ok);
+  box-shadow:0 0 0 4px rgba(95,208,138,.18); flex:none; font-style:normal}
+.hero-r-bottom{display:flex; flex-direction:column; align-items:flex-end; gap:18px; width:100%}
+
+/* стеклянная визитка — приём референса */
+.idcard{width:100%; max-width:384px; border:1px solid var(--line-2); border-radius:22px;
+  background:transparent; padding:26px 28px 24px}
+.idcard .nm{font-size:23px; font-weight:800; letter-spacing:-.03em}
+.idcard .rl{font-size:13.5px; color:var(--smoke); margin-top:2px}
+.idcard .nums{display:grid; grid-template-columns:repeat(3,1fr); gap:12px; margin:20px 0 16px}
+.idcard .nums b{display:block; font-size:21px; font-weight:800; letter-spacing:-.04em; line-height:1}
+.idcard .nums span{display:block; font-size:11.5px; color:var(--smoke); margin-top:6px; line-height:1.3}
+.idcard > p{font-size:13.5px; color:var(--smoke); line-height:1.5;
+  padding-top:16px; border-top:1px solid var(--line)}
+
+@media(max-width:1080px){
+  .hero{min-height:0; padding:30px 0 44px}
+  .hero > .wrap{grid-template-columns:1fr; gap:30px}
+  .hero-scrim{display:none}
+  .hero-photo{position:static; order:-1; justify-self:center; width:100%; max-width:420px}
+  .hero-photo img{height:auto; width:100%}
+  .hero-r{align-items:stretch}
+  .avail{justify-content:flex-start}
+  .hero-r-bottom{align-items:stretch}
+  .idcard{max-width:none}
+  .hero-bottom{max-width:none}
+}
+@media(min-width:1081px) and (max-height:820px){
+  h1{font-size:clamp(34px,3.4vw,46px)}
+  .hero-l .role{margin-top:12px; font-size:15px}
+  .acts .pill{height:34px; padding:0 4px 0 16px; font-size:12.5px; gap:9px}
+  .acts .pill .chip{width:26px; height:26px}
+  .idcard{padding:20px 22px 18px}
+  .idcard .nums{margin:16px 0 14px}
+  .hero-thumbs a{aspect-ratio:9/12}
+}
+
+/* ============ секции ============ */
+section{padding:56px 0; scroll-margin-top:var(--hh); position:relative}
+
+
+.sec-head{display:grid; grid-template-columns:200px minmax(0,1fr); gap:44px; margin-bottom:44px}
+.sec-head .lead{font-size:15px; color:var(--smoke); max-width:34ch; margin-top:16px}
+@media(max-width:900px){
+  .sec-head{grid-template-columns:1fr; gap:16px; margin-bottom:44px}
+}
+
+/* ============ о себе ============ */
+.about{display:grid; grid-template-columns:minmax(0,1.05fr) minmax(0,.85fr); gap:64px; align-items:start}
+.about .story p{font-size:18px; color:var(--smoke); max-width:52ch}
+.about .story p + p{margin-top:18px}
+.about .story strong{color:var(--paper); font-weight:700}
+.about .story em{font-style:normal; color:var(--clay); font-weight:700}
+.facts{border-top:1px solid var(--line)}
+.fact{display:grid; grid-template-columns:104px 1fr; gap:18px; padding:16px 0;
+  border-bottom:1px solid var(--line); align-items:baseline}
+.fact dt{font-size:10.5px; font-weight:800; letter-spacing:.16em; text-transform:uppercase; color:var(--smoke-2)}
+.fact dd{margin:0; font-size:15.5px; font-weight:700}
+.fact dd span{display:block; font-weight:500; color:var(--smoke); font-size:13.5px; margin-top:3px}
+@media(max-width:900px){.about{grid-template-columns:1fr; gap:40px}}
+
+/* ============ услуги: «призрачный» заголовок + карточки 01–03 ============ */
+.svc-wrap{position:relative}
+.svc{position:relative; z-index:1; display:grid; grid-template-columns:repeat(3,minmax(0,1fr));
+  gap:22px; align-items:stretch}
+.svc-card{border-radius:24px; overflow:hidden; background:var(--panel); border:1px solid var(--line);
+  display:flex; flex-direction:column;
+  transition:transform .35s cubic-bezier(.2,.7,.3,1), border-color .35s}
+.svc-card:hover{transform:translateY(-8px); border-color:var(--line-2)}
+.svc-shot{position:relative; aspect-ratio:16/11; overflow:hidden; background:var(--panel-2)}
+.svc-shot img{width:100%; height:100%; object-fit:cover; opacity:.9;
+  transition:transform .7s cubic-bezier(.2,.7,.3,1)}
+.svc-card:hover .svc-shot img{transform:scale(1.05)}
+.svc-shot::after{content:""; position:absolute; inset:0;
+  background:linear-gradient(to top, var(--panel) 3%, rgba(12,12,12,.30) 60%, rgba(12,12,12,0))}
+.svc-num{position:absolute; left:24px; bottom:10px; z-index:2; font-size:62px; font-weight:800;
+  letter-spacing:-.06em; line-height:1; color:transparent; -webkit-text-stroke:1.4px rgba(255,255,255,.55)}
+.svc-body{padding:24px 26px 28px; display:flex; flex-direction:column; gap:14px; flex:1}
+.svc-body > p{font-size:15px; color:var(--smoke)}
+.svc-body ul{list-style:none; margin:4px 0 0; padding:0; display:flex; flex-direction:column; gap:10px}
+.svc-body li{font-size:14.5px; color:var(--smoke); padding-left:19px; position:relative}
+.svc-body li::before{content:""; position:absolute; left:0; top:9px; width:6px; height:6px;
+  border-radius:50%; background:var(--clay)}
+.svc-foot{margin-top:auto; padding-top:20px; border-top:1px solid var(--line);
+  display:flex; justify-content:space-between; gap:14px; font-size:11px; font-weight:800;
+  letter-spacing:.14em; text-transform:uppercase; color:var(--smoke-2)}
+.svc-foot b{color:var(--clay); font-weight:800}
+@media(max-width:1000px){
+  .svc{grid-template-columns:1fr}
+}
+
+/* ============ фирменная полоса: имя контуром + бегущая строка поверх ============ */
+.brandband{position:relative; overflow:hidden; padding:0}
+.brandband .ticker{position:absolute; z-index:1; left:0; right:0; top:50%; translate:0 -50%}
+/* имя контуром во всю ширину — фон для бегущей строки */
+.wordmark{position:relative; z-index:0; pointer-events:none; white-space:nowrap;
+  text-align:center; font-size:25.5vw; font-weight:800; letter-spacing:-.055em;
+  line-height:.78; color:transparent; -webkit-text-stroke:1.6px #ffffff; opacity:.2}
+@media(max-width:900px){
+  .brandband{padding:0}
+  .wordmark{font-size:30vw; -webkit-text-stroke-width:1.1px}
+}
+.ticker{overflow:hidden; padding:14px 0;
+  -webkit-mask-image:linear-gradient(90deg, transparent, #000 8%, #000 92%, transparent);
+  mask-image:linear-gradient(90deg, transparent, #000 8%, #000 92%, transparent)}
+.ticker-in{display:flex; gap:34px; width:max-content; align-items:center;
+  animation:slide 44s linear infinite}
+.ticker span{font-size:clamp(20px,2.1vw,30px); font-weight:800; letter-spacing:-.03em;
+  white-space:nowrap; color:var(--dim)}
+.ticker span.hot{color:var(--clay)}
+.ticker i{width:7px; height:7px; border-radius:50%; background:var(--clay); flex:none; font-style:normal}
+@keyframes slide{from{transform:translateX(0)} to{transform:translateX(-50%)}}
+@media (prefers-reduced-motion: reduce){.ticker-in{animation:none}}
+
+/* ============ как я собираю ролик — четыре шага ============ */
+.steps{display:grid; grid-template-columns:repeat(4,minmax(0,1fr)); gap:0;
+  margin-top:44px; border-top:1px solid var(--line)}
+.step{padding:24px 26px 0 0; border-left:1px solid var(--line); padding-left:26px}
+.step:first-child{border-left:0; padding-left:0}
+.step b{display:block; font-size:12px; font-weight:800; letter-spacing:.18em; color:var(--clay)}
+.step h3{font-size:17px; margin-top:14px}
+.step p{font-size:14px; color:var(--smoke); margin-top:8px}
+@media(max-width:900px){
+  .steps{grid-template-columns:1fr 1fr}
+  .step{padding:20px 18px 20px 0}
+  .step:nth-child(odd){border-left:0; padding-left:0}
+  .step:nth-child(n+3){border-top:1px solid var(--line)}
+}
+
+/* ============ достижения: нумерованные строки ============ */
+.rows{border-top:1px solid var(--line)}
+.wrow{display:grid; grid-template-columns:52px 190px minmax(0,1fr) minmax(0,40ch); gap:28px;
+  padding:26px 0; border-bottom:1px solid var(--line); align-items:baseline;
+  transition:background .3s}
+.wrow:hover{background:rgba(255,255,255,.028)}
+.wrow .ix{font-size:12px; font-weight:800; color:var(--smoke-2); letter-spacing:.1em}
+.wrow .val{font-size:clamp(27px,2.9vw,38px); font-weight:800; letter-spacing:-.05em; line-height:1;
+  color:var(--clay)}
+.wrow h3{font-size:18px}
+.wrow p{font-size:14.5px; color:var(--smoke)}
+@media(max-width:1000px){
+  .wrow{grid-template-columns:44px 1fr; gap:6px 18px; padding:22px 0}
+  .wrow .val{grid-column:2}
+  .wrow h3, .wrow p{grid-column:2}
+  .wrow h3{margin-top:6px}
+}
+
+/* ============ портфолио ============ */
+.works{display:grid; grid-template-columns:repeat(3,minmax(0,1fr)); gap:22px}
+.work{text-decoration:none; display:flex; flex-direction:column; gap:14px; min-width:0}
+.work .shot{position:relative; border-radius:18px; overflow:hidden; aspect-ratio:9/16;
+  border:1px solid var(--line); background:var(--panel-2);
+  transition:transform .4s cubic-bezier(.2,.7,.3,1), border-color .4s}
+.work:hover .shot{transform:translateY(-8px); border-color:var(--clay)}
+.work .shot img{width:100%; height:100%; object-fit:cover; transition:transform .8s cubic-bezier(.2,.7,.3,1)}
+.work:hover .shot img{transform:scale(1.05)}
+.work .views{position:absolute; left:16px; bottom:14px; font-size:24px; font-weight:800;
+  letter-spacing:-.04em; text-shadow:0 2px 16px rgba(0,0,0,.85)}
+.work .tag{position:absolute; top:13px; left:13px; font-size:10px; font-weight:800;
+  letter-spacing:.16em; text-transform:uppercase; padding:6px 11px; border-radius:999px;
+  background:rgba(6,6,6,.62); border:1px solid rgba(255,255,255,.18); backdrop-filter:blur(8px)}
+.work .meta{display:flex; align-items:center; justify-content:space-between; gap:16px; min-width:0}
+.work .meta > span:first-child{min-width:0}
+.work .meta b{overflow-wrap:anywhere}
+.work .meta b{font-size:15px; font-weight:700; letter-spacing:-.01em}
+.work .meta span{display:block; font-size:12.5px; color:var(--smoke-2); margin-top:2px}
+/* пилюля «СМОТРЕТЬ» — приём из Selected Work референса */
+.watch{flex:none; font-size:10px; font-weight:800; letter-spacing:.14em; text-transform:uppercase;
+  padding:9px 16px; border-radius:999px; background:var(--paper); color:#000;
+  transition:background .2s, color .2s}
+.work:hover .watch{background:var(--clay); color:#1a0d07}
+@media(max-width:1000px){
+  .works{grid-template-columns:repeat(2,minmax(0,1fr)); gap:16px}
+}
+@media(max-width:620px){
+  .works{grid-template-columns:repeat(2,minmax(0,1fr)); gap:12px}
+  .work .views{font-size:18px}
+  .work .meta{flex-direction:column; align-items:flex-start; gap:4px}
+  .work .meta b{font-size:13.5px}
+  .work .meta span{font-size:11.5px}
+  .work .meta .watch{display:none}
+}
+
+/* ============ аналитика ============ */
+.plat{display:grid; grid-template-columns:repeat(3,1fr);
+  border-top:1px solid var(--line); border-bottom:1px solid var(--line); margin-bottom:44px}
+.plat > div{padding:30px 34px; border-left:1px solid var(--line)}
+.plat > div:first-child{border-left:0; padding-left:0}
+.plat .ph{display:flex; align-items:center; gap:11px; margin-bottom:22px}
+.plat .ph svg{width:19px; height:19px; color:var(--clay); flex:none}
+.plat .ph b{font-size:15px; font-weight:800}
+.plat .ph span{margin-left:auto; font-size:11px; font-weight:700; letter-spacing:.1em; color:var(--smoke-2)}
+.plat .kv{display:flex; justify-content:space-between; align-items:baseline; gap:12px;
+  font-size:14px; color:var(--smoke); padding:9px 0}
+.plat .kv b{font-size:19px; font-weight:800; letter-spacing:-.03em; color:var(--paper)}
+@media(max-width:900px){
+  .plat{grid-template-columns:1fr}
+  .plat > div{border-left:0; padding:26px 0; border-top:1px solid var(--line)}
+  .plat > div:first-child{border-top:0}
+}
+.chart{border:1px solid var(--line); border-radius:24px; padding:34px 32px 28px; background:var(--panel)}
+.chart-top{display:flex; justify-content:space-between; align-items:baseline; gap:24px;
+  flex-wrap:wrap; margin-bottom:34px}
+.chart-top h3{font-size:19px}
+.keys{display:flex; gap:20px; font-size:11px; font-weight:800; letter-spacing:.14em;
+  text-transform:uppercase; color:var(--smoke-2)}
+.keys i{display:inline-block; width:11px; height:11px; border-radius:3px; margin-right:8px;
+  vertical-align:-1px; font-style:normal}
+.cols{display:grid; grid-template-columns:repeat(8,1fr); gap:14px; align-items:end; height:250px}
+.col{display:flex; flex-direction:column; justify-content:flex-end; height:100%; gap:10px; min-width:0}
+.col .cv{font-size:15px; font-weight:800; letter-spacing:-.03em; text-align:center}
+.col .cb{width:100%; border-radius:8px 8px 3px 3px; height:0;
+  transition:height 1.1s cubic-bezier(.2,.75,.3,1)}
+.col .cb.tt{background:linear-gradient(180deg, var(--clay-hi), var(--clay-deep))}
+.col .cb.ig{background:linear-gradient(180deg, rgba(255,255,255,.92), rgba(255,255,255,.2))}
+.axis{display:grid; grid-template-columns:repeat(8,1fr); gap:14px; margin-top:14px;
+  padding-top:14px; border-top:1px solid var(--line)}
+.axis span{font-size:11.5px; color:var(--smoke-2); text-align:center; line-height:1.3; min-width:0}
+.src{margin-top:26px; font-size:12px; color:var(--smoke-2)}
+@media(max-width:820px){
+  .cols,.axis{grid-template-columns:repeat(4,1fr); gap:9px}
+  .cols{height:196px}
+  .col .cv{font-size:12.5px}
+  .axis span{font-size:10.5px}
+  .col:nth-child(n+5){display:none}
+  .axis span:nth-child(n+5){display:none}
+}
+
+/* ============ центрированное заявление ============ */
+.claim{text-align:center; padding:56px 0}
+.claim h2{max-width:20ch; margin:0 auto; font-size:clamp(30px,4.2vw,58px)}
+.claim h2 span{color:var(--clay)}
+.claim p{margin:26px auto 0; max-width:52ch; color:var(--smoke); font-size:16px}
+
+/* ============ финал ============ */
+.final{position:relative; overflow:hidden; padding:56px 0}
+.final-glow{position:absolute; left:50%; top:-38%; transform:translateX(-50%);
+  width:120vw; height:120vw; max-width:1200px; max-height:1200px; border-radius:50%;
+  background:radial-gradient(circle, var(--clay-glow), transparent 62%); pointer-events:none}
+.final .wrap{position:relative; z-index:1}
+.final-grid{display:grid; grid-template-columns:minmax(0,1.1fr) minmax(0,.9fr); gap:56px; align-items:center}
+.final h2 span{color:var(--clay)}
+.final .lead{margin-top:22px; max-width:40ch; color:var(--smoke); font-size:16.5px}
+.contact{border:1px solid var(--line); border-radius:24px; background:var(--glass);
+  backdrop-filter:blur(18px); padding:32px}
+.contact .cap{display:block; margin-bottom:14px}
+.contact .big{font-size:26px; font-weight:800; letter-spacing:-.03em}
+.contact .big a{color:var(--clay); text-decoration:none}
+.contact .big a:hover{color:var(--clay-hi)}
+.contact .pill{width:100%; justify-content:space-between; margin:22px 0 20px}
+.contact .circles{padding-top:20px; border-top:1px solid var(--line)}
+@media(max-width:900px){.final-grid{grid-template-columns:1fr; gap:36px}}
+
+footer{border-top:1px solid var(--line)}
+.fmain{display:flex; align-items:center; justify-content:space-between; gap:24px;
+  flex-wrap:wrap; padding:34px 0 26px}
+.fmain .logo b{font-size:17px}
+.fmain .sub{font-size:12.5px; color:var(--smoke-2); margin-top:3px}
+.fstrip{display:grid; grid-template-columns:repeat(3,1fr); border-top:1px solid var(--line)}
+.fstrip span{padding:16px 0; text-align:center; font-size:11px; font-weight:800;
+  letter-spacing:.16em; text-transform:uppercase; color:var(--smoke-2);
+  border-left:1px solid var(--line)}
+.fstrip span:first-child{border-left:0}
+@media(max-width:760px){.fstrip{grid-template-columns:1fr}
+  .fstrip span{border-left:0; border-top:1px solid var(--line)}
+  .fstrip span:first-child{border-top:0}}
+
+/* ============ появление ============ */
+.js .rv{opacity:0; transform:translateY(26px);
+  transition:opacity .8s ease, transform .8s cubic-bezier(.2,.7,.3,1)}
+.js .rv.in{opacity:1; transform:none}
+@media (prefers-reduced-motion: reduce){
+  *{animation:none !important; transition-duration:.01ms !important}
+  .js .rv{opacity:1; transform:none}
+}
+
+/* узкие телефоны */
+@media(max-width:440px){
+  .wrap{padding:0 20px}
+  .logo b{font-size:17px}
+  .burger{padding:8px 14px; font-size:12.5px}
+  .circ{width:40px; height:40px}
+  .head-soc .circ{width:32px; height:32px}
+  .head-soc .circ svg{width:15px; height:15px}
+  .head-soc{gap:6px}
+}
+</style>
+
+<script>document.documentElement.classList.add('js');</script>
+
+<header id="hdr">
+  <div class="wrap hbar">
+    <a class="logo" href="#top"><span class="bead"></span><b>Marsezh.</b></a>
+    <nav id="nav">
+      <a href="#about">О себе</a>
+      <a href="#services">Услуги</a>
+      <a href="#wins">Достижения</a>
+      <a href="#works">Портфолио</a>
+      <a href="#stats">Аналитика</a>
+    </nav>
+    <div class="head-soc circles">
+      <a class="circ" href="https://www.instagram.com/marsezh.ai/" target="_blank" rel="noopener" aria-label="Instagram @marsezh.ai">{{IC_IG}}</a>
+      <a class="circ" href="https://www.tiktok.com/@marsezh.ai" target="_blank" rel="noopener" aria-label="TikTok @marsezh.ai">{{IC_TT}}</a>
+      <a class="circ" href="https://tgclick.com/marsezhai" target="_blank" rel="noopener" aria-label="Telegram-канал marsezhai">{{IC_TG}}</a>
+    </div>
+    <span class="role-tag">Портфолио ИИ-креатора</span>
+    <button class="burger" id="burger" aria-expanded="false" aria-controls="nav">Меню</button>
+  </div>
+</header>
+
+<main id="top">
+
+  <!-- ============ ПЕРВЫЙ ЭКРАН ============ -->
+  <section class="hero">
+    <div class="hero-scrim"></div>
+    <div class="wrap">
+      <div class="hero-photo"><img src="{{HERO_PHOTO}}" alt="Марсэж, ИИ-креатор"></div>
+
+      <div class="hero-l">
+        <div>
+          <h1>Ролики, которые<br><span class="dimtext">смотрят миллионы.</span></h1>
+          <p class="role">AI Creator · Нейросети · Вирусные вертикальные ролики</p>
+        </div>
+        <div class="acts">
+          <a class="pill" href="#works">Смотреть портфолио <span class="chip"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h13M13 6l6 6-6 6"/></svg></span></a>
+          <a class="pill ghost" href="{{FORM}}" target="_blank" rel="noopener">Заполнить заявку <span class="chip"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17 17 7M9 7h8v8"/></svg></span></a>
+        </div>
+        <div class="hero-bottom">
+          <p>От идеи до готового видео — придумываю и собираю ИИ-ролики, которые люди досматривают до конца и пересылают друзьям сами.</p>
+          <div class="hero-thumbs">{{HERO_THUMBS}}</div>
+        </div>
+      </div>
+
+      <div class="hero-r">
+        <div class="hero-r-bottom">
+          <div class="avail"><i></i>Открыт к сотрудничеству</div>
+          <div class="idcard">
+            <div class="nm">Marsezh</div>
+            <div class="rl">AI-креатор · @marsezh.ai</div>
+            <div class="nums">
+              <div><b class="tnum">21,9 млн</b><span>просмотров всего</span></div>
+              <div><b class="tnum">4,4 млн</b><span>лучший ролик</span></div>
+              <div><b class="tnum">16,5 тыс.</b><span>подписчиков</span></div>
+            </div>
+            <p>Делаю ролики, которые попадают в рекомендации без единого рубля на продвижение.</p>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ============ О СЕБЕ ============ -->
+  <section id="about">
+    <div class="wrap">
+      <div class="sec-head rv">
+        <span class="cap">Кто я</span>
+        <div>
+          <h2>Не «картинки нейронкой». <span class="dimtext">Ролики, которые залетают.</span></h2>
+          <p class="lead">Сценарий, карта персонажа, промт, генерация, монтаж и звук — один человек вместо съёмочной группы.</p>
+        </div>
+      </div>
+      <div class="about">
+        <div class="story rv">
+          <p>Я пришёл в ИИ-видео не из продакшена, а из ленты: смотрел, что люди реально досматривают, и научился воспроизводить это нейросетями. Первый же ролик серии «легендарные мемы» собрал <strong>3,6 млн просмотров и 148 тысяч лайков</strong> — и я тут же разобрал его по шагам в своём канале, бесплатно.</p>
+          <p>Дальше формат повторился: <em>мемы</em>, <em>фейк-новости</em>, <em>кино</em> и <em>коллаборации с блогерами</em>. Один промт, одна модель — и много часов на подбор кадров, реплик и монтаж. Именно они решают, будет это «ну норм» или миллион просмотров.</p>
+          <p>Параллельно веду канал <strong>«marsezh | Все Об AI»</strong>: выкладываю туда полные туторы и готовые промты к своим вирусным роликам. Учить и делать — для меня одно занятие.</p>
+        </div>
+        <dl class="facts rv">
+          <div class="fact"><dt>Ник</dt><dd>marsezh.ai<span>Instagram · TikTok</span></dd></div>
+          <div class="fact"><dt>Формат</dt><dd>Вертикальные ролики 15–60 сек<span>Reels · TikTok · Shorts</span></dd></div>
+          <div class="fact"><dt>Стек</dt><dd>Seedance 2.5 + карта персонажа<span>генерация и ручная сборка звука</span></dd></div>
+          <div class="fact"><dt>Жанры</dt><dd>Мемы · фейк-новости · кино · UGC</dd></div>
+          <div class="fact"><dt>Канал</dt><dd>marsezh | Все Об AI<span>туторы и промты без платных подписок</span></dd></div>
+          <div class="fact"><dt>Связь</dt><dd>@marsedzhan<span>Telegram, отвечаю сам</span></dd></div>
+        </dl>
+      </div>
+
+      <div class="steps rv">
+        <div class="step"><b>01</b><h3>Идея</h3><p>Что зацепит в первую секунду и почему этим захотят поделиться.</p></div>
+        <div class="step"><b>02</b><h3>Карта персонажа</h3><p>Лицо, одежда и детали фиксируются, чтобы не «плыли» между кадрами.</p></div>
+        <div class="step"><b>03</b><h3>Генерация</h3><p>Промт, модель, отбор дублей — из десятков вариантов остаются единицы.</p></div>
+        <div class="step"><b>04</b><h3>Монтаж и звук</h3><p>Реплики, ритм и субтитры. Именно здесь ролик становится вирусным.</p></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ ФИРМЕННАЯ ПОЛОСА ============ -->
+  <div class="brandband" aria-hidden="true">
+    <div class="wordmark">marsezh</div>
+    <div class="ticker"><div class="ticker-in">{{TICKER}}</div></div>
+  </div>
+
+  <!-- ============ УСЛУГИ ============ -->
+  <section id="services">
+    <div class="wrap">
+      <div class="sec-head rv">
+        <span class="cap">Услуги</span>
+        <div>
+          <h2>Я собрал этот сайт не только затем, <span class="dimtext">чтобы показать свои ролики.</span></h2>
+          <p class="lead">Что я могу сделать для вашего проекта — три формата работы.</p>
+        </div>
+      </div>
+      <div class="svc-wrap">
+        <div class="svc">
+
+          <article class="svc-card rv">
+            <div class="svc-shot"><img src="{{S1}}" alt="Кадр из вирусного ролика"><span class="svc-num">01</span></div>
+            <div class="svc-body">
+              <h3>Вирусные ИИ-ролики под ключ</h3>
+              <p>Вы приносите задачу или продукт — я приношу готовый ролик, который может уйти в рекомендации. Без съёмок, актёров и площадок.</p>
+              <ul>
+                <li>Концепт и сценарий под площадку</li>
+                <li>Карта персонажа: лицо не «плывёт» между кадрами</li>
+                <li>Генерация, монтаж, звук и субтитры</li>
+                <li>2 круга правок, исходники на руки</li>
+              </ul>
+              <div class="svc-foot"><span>Срок 3—7 дней</span><b>от 1 ролика</b></div>
+            </div>
+          </article>
+
+          <article class="svc-card rv">
+            <div class="svc-shot"><img src="{{S2}}" alt="Кадр из коллаборации"><span class="svc-num">02</span></div>
+            <div class="svc-body">
+              <h3>Интеграции и реклама в блоге</h3>
+              <p>Продукт внутри сюжета, а не баннером в конце. Формат обкатан на коммерческих интеграциях: зрители досматривают и идут по промокоду.</p>
+              <ul>
+                <li>Нативная интеграция в мой ролик</li>
+                <li>Посев в Instagram, TikTok и Telegram-канале</li>
+                <li>Отдельный ролик под ваши площадки</li>
+                <li>Отчёт по охватам и реакциям</li>
+              </ul>
+              <div class="svc-foot"><span>Охват 15К—4,4М</span><b>кейс: study24.ai</b></div>
+            </div>
+          </article>
+
+          <article class="svc-card rv">
+            <div class="svc-shot"><img src="{{S3}}" alt="Кадр из обучающего ролика"><span class="svc-num">03</span></div>
+            <div class="svc-body">
+              <h3>Обучение и наставничество</h3>
+              <p>Разбираю свой пайплайн целиком: как собрать вирусный ролик одним промтом и почему у большинства выходит «почти, но не то».</p>
+              <ul>
+                <li>Личный разбор вашего контента</li>
+                <li>Карта персонажа и библиотека промтов</li>
+                <li>Как выбирать тему, которая залетит</li>
+                <li>Доступ к каналу с туторами</li>
+              </ul>
+              <div class="svc-foot"><span>1:1 или группа</span><b>туторы бесплатно</b></div>
+            </div>
+          </article>
+
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ ДОСТИЖЕНИЯ (светлая секция) ============ -->
+  <section id="wins">
+    <div class="wrap">
+      <div class="sec-head rv">
+        <span class="cap">Достижения</span>
+        <div>
+          <h2>Самые популярные <span class="dimtext">ролики.</span></h2>
+          <p class="lead">Все цифры — из открытой статистики профилей на 1 сентября 2026 года.</p>
+        </div>
+      </div>
+      <div class="rows">
+        <div class="wrow rv"><span class="ix">01</span><span class="val tnum">4,4 млн</span>
+          <h3>Один ролик в TikTok</h3>
+          <p>Лучший результат на площадке. Три закреплённых ролика вместе дают 8,3 млн просмотров.</p></div>
+        <div class="wrow rv"><span class="ix">02</span><span class="val tnum">3,6 млн</span>
+          <h3>«Легендарные мемы. Один промт»</h3>
+          <p>Рекорд в Instagram: 148 082 лайка, 1 988 комментариев и 3 706 репостов на одном рилсе.</p></div>
+        <div class="wrow rv"><span class="ix">03</span><span class="val tnum">1,2 млн</span>
+          <h3>Фейк-новость про Алматы</h3>
+          <p>Ролик разошёлся как настоящая новость — в комментариях спорили, было это на самом деле или нет.</p></div>
+        <div class="wrow rv"><span class="ix">04</span><span class="val tnum">1,1 млн</span>
+          <h3>Лайков в TikTok</h3>
+          <p>При 7,5 тыс. подписчиков: почти вся аудитория приходит из рекомендаций, а не с подписки.</p></div>
+        <div class="wrow rv"><span class="ix">05</span><span class="val tnum">4 серии</span>
+          <h3>Формат «Мемсы» стал сериалом</h3>
+          <p>Четыре части подряд, каждая — самостоятельный вирус. Тутор по первой лежит в канале в открытом доступе.</p></div>
+        <div class="wrow rv"><span class="ix">06</span><span class="val tnum">×2 725</span>
+          <h3>Виральность лучшего ролика</h3>
+          <p>Отношение просмотров к числу подписчиков в Instagram. Алгоритмы разносят контент сами.</p></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ ПОРТФОЛИО ============ -->
+  <section id="works">
+    <div class="wrap">
+      <div class="sec-head rv">
+        <span class="cap">Избранные работы</span>
+        <div>
+          <h2>От мемов до фейк-новостей — <span class="dimtext">каждый ролик под свою секунду внимания.</span></h2>
+          <p class="lead">Двенадцать работ из ленты @marsezh.ai. Цифра на карточке — количество просмотров, а не оценка автора.</p>
+        </div>
+      </div>
+      <div class="works rv">{{WORKS}}</div>
+    </div>
+  </section>
+
+  <!-- ============ АНАЛИТИКА ============ -->
+  <section id="stats">
+    <div class="wrap">
+      <div class="sec-head rv">
+        <span class="cap">Аналитика</span>
+        <div>
+          <h2>Ролики набирают. <span class="dimtext">Вот доказательство.</span></h2>
+          <p class="lead">Открытая статистика трёх площадок: сколько людей досмотрели, лайкнули и переслали.</p>
+        </div>
+      </div>
+
+      <div class="plat rv">
+        <div>
+          <div class="ph">{{IC_IG}}<b>Instagram</b><span>@marsezh.ai</span></div>
+          <div class="kv"><span>Просмотров</span><b class="tnum">8,3 млн</b></div>
+          <div class="kv"><span>Подписчиков</span><b class="tnum">8 186</b></div>
+          <div class="kv"><span>Роликов</span><b class="tnum">32</b></div>
+          <div class="kv"><span>Лучший ролик</span><b class="tnum">3,6 млн</b></div>
+        </div>
+        <div>
+          <div class="ph">{{IC_TT}}<b>TikTok</b><span>@marsezh.ai</span></div>
+          <div class="kv"><span>Просмотров</span><b class="tnum">13,6 млн</b></div>
+          <div class="kv"><span>Подписчиков</span><b class="tnum">7 504</b></div>
+          <div class="kv"><span>Лайков</span><b class="tnum">1,1 млн</b></div>
+          <div class="kv"><span>Лучший ролик</span><b class="tnum">4,4 млн</b></div>
+        </div>
+        <div>
+          <div class="ph">{{IC_TG}}<b>Telegram</b><span>marsezhai</span></div>
+          <div class="kv"><span>Подписчиков</span><b class="tnum">803</b></div>
+          <div class="kv"><span>Туторов и промтов</span><b class="tnum">11 файлов</b></div>
+          <div class="kv"><span>Видео в канале</span><b class="tnum">24</b></div>
+          <div class="kv"><span>Доступ</span><b>бесплатно</b></div>
+        </div>
+      </div>
+
+      <div class="chart rv">
+        <div class="chart-top">
+          <h3>Топ-8 роликов по просмотрам</h3>
+          <div class="keys">
+            <span><i style="background:var(--clay)"></i>TikTok</span>
+            <span><i style="background:#ffffff"></i>Instagram</span>
+          </div>
+        </div>
+        <div class="cols">
+          <div class="col"><span class="cv tnum">4,4 млн</span><span class="cb tt" data-h="100"></span></div>
+          <div class="col"><span class="cv tnum">3,6 млн</span><span class="cb ig" data-h="82"></span></div>
+          <div class="col"><span class="cv tnum">2,4 млн</span><span class="cb tt" data-h="55"></span></div>
+          <div class="col"><span class="cv tnum">1,7 млн</span><span class="cb tt" data-h="39"></span></div>
+          <div class="col"><span class="cv tnum">1,5 млн</span><span class="cb tt" data-h="34"></span></div>
+          <div class="col"><span class="cv tnum">1,2 млн</span><span class="cb ig" data-h="27"></span></div>
+          <div class="col"><span class="cv tnum">911 тыс.</span><span class="cb ig" data-h="21"></span></div>
+          <div class="col"><span class="cv tnum">900 тыс.</span><span class="cb ig" data-h="20"></span></div>
+        </div>
+        <div class="axis">
+          <span>«Оформим?»</span><span>Мемы, один промт</span><span>«Помогите лям»</span>
+          <span>«И такое бывает»</span><span>Литвин</span><span>Новости Алматы</span>
+          <span>Мемы ч.3</span><span>Мемы ч.2</span>
+        </div>
+        <p class="src">Источник — открытая статистика Instagram и TikTok, 01.09.2026. Суммарно 21,9 млн просмотров на 64 роликах.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ ЗАЯВЛЕНИЕ ============ -->
+  <section class="claim rv">
+    <div class="wrap">
+      <h2>Я не начинаю ролик с красивого кадра.<br><span>Я начинаю с секунды, ради которой его досмотрят.</span></h2>
+      <p>Сначала — что зацепит и почему этим захотят поделиться. Красивая генерация приходит потом и стоит дешевле, чем кажется.</p>
+    </div>
+  </section>
+
+  <!-- ============ ФИНАЛ ============ -->
+  <section class="final">
+    <div class="final-glow"></div>
+    <div class="wrap final-grid">
+      <div class="rv">
+        <span class="cap">Сотрудничество</span>
+        <h2 style="margin-top:18px">Расскажите, что нужно снять.<br><span>Придумаю, как это залетит.</span></h2>
+        <p class="lead">Бренды, артисты, блогеры и агентства. Напишите пару слов о задаче — отвечаю сам и обычно в тот же день.</p>
+      </div>
+      <div class="contact rv">
+        <span class="cap">Написать напрямую</span>
+        <div class="big"><a href="https://t.me/marsedzhan" target="_blank" rel="noopener">@marsedzhan</a></div>
+        <a class="pill" href="https://t.me/marsedzhan" target="_blank" rel="noopener">Написать в Telegram <span class="chip"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17 17 7M9 7h8v8"/></svg></span></a>
+        <div class="circles">
+          <a class="circ" href="https://www.instagram.com/marsezh.ai/" target="_blank" rel="noopener" aria-label="Instagram @marsezh.ai">{{IC_IG}}</a>
+          <a class="circ" href="https://www.tiktok.com/@marsezh.ai" target="_blank" rel="noopener" aria-label="TikTok @marsezh.ai">{{IC_TT}}</a>
+          <a class="circ" href="https://tgclick.com/marsezhai" target="_blank" rel="noopener" aria-label="Telegram-канал с туторами">{{IC_TG}}</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<footer>
+  <div class="wrap">
+    <div class="fmain">
+      <div>
+        <span class="logo"><span class="bead"></span><b>Marsezh.</b></span>
+        <div class="sub">AI-креатор · Нейросети · Вирусные ролики</div>
+      </div>
+      <span class="cap">© 2026 · @marsezh.ai</span>
+    </div>
+  </div>
+  <div class="wrap"><div class="fstrip">
+    <span>Ролики, которые досматривают</span>
+    <span>21,9 млн просмотров</span>
+    <span>Туторы и промты бесплатно</span>
+  </div></div>
+</footer>
+
+<script>
+(function(){
+  var hdr    = document.getElementById('hdr');
+  var nav    = document.getElementById('nav');
+  var burger = document.getElementById('burger');
+  var links  = Array.prototype.slice.call(nav.querySelectorAll('a'));
+  var secs   = links.map(function(a){ return document.querySelector(a.getAttribute('href')); });
+  var rv     = Array.prototype.slice.call(document.querySelectorAll('.rv'));
+
+  burger.addEventListener('click', function(){
+    var open = nav.classList.toggle('open');
+    burger.setAttribute('aria-expanded', open ? 'true' : 'false');
+  });
+  links.forEach(function(a){
+    a.addEventListener('click', function(){
+      nav.classList.remove('open');
+      burger.setAttribute('aria-expanded', 'false');
+    });
+  });
+
+  function show(el){
+    if (el.classList.contains('in')) return;
+    el.classList.add('in');
+    el.querySelectorAll('.cb').forEach(function(b){ b.style.height = b.dataset.h + '%'; });
+  }
+  function revealVisible(){
+    for (var i = 0; i < rv.length; i++){
+      var r = rv[i].getBoundingClientRect();
+      if (r.top < window.innerHeight * 0.94 && r.bottom > 0) show(rv[i]);
+    }
+  }
+  function onScroll(){
+    revealVisible();
+    hdr.classList.toggle('stuck', window.scrollY > 8);
+    var y = window.scrollY + 150, cur = -1;
+    secs.forEach(function(s, i){ if (s && s.offsetTop <= y) cur = i; });
+    links.forEach(function(a, i){ a.classList.toggle('on', i === cur); });
+  }
+
+  if ('IntersectionObserver' in window){
+    var io = new IntersectionObserver(function(entries){
+      entries.forEach(function(e){ if (e.isIntersecting){ show(e.target); io.unobserve(e.target); } });
+    }, {rootMargin:'0px 0px -10% 0px', threshold:0.05});
+    rv.forEach(function(el, i){
+      el.style.transitionDelay = (Math.min(i, 4) * 70) + 'ms';
+      io.observe(el);
+    });
+  } else {
+    rv.forEach(show);
+  }
+
+  // соцсети встают ровно посередине между меню и подписью справа
+  var soc = document.querySelector('.head-soc');
+  var role = document.querySelector('.role-tag');
+  function placeSocials(){
+    if (!window.matchMedia('(min-width:1081px)').matches){
+      soc.classList.remove('centred');
+      soc.style.left = '';
+      return;
+    }
+    soc.classList.remove('centred');
+    soc.style.left = '';
+    var bar = soc.parentElement.getBoundingClientRect();
+    var navR = nav.getBoundingClientRect().right;
+    var roleL = role.getBoundingClientRect().left;
+    soc.classList.add('centred');
+    soc.style.left = ((navR + roleL) / 2 - bar.left) + 'px';
+  }
+  placeSocials();
+  window.addEventListener('resize', placeSocials);
+
+  // бегущая строка встаёт ровно по оптическому центру надписи «marsezh»:
+  // коробка строки не совпадает с реальными границами букв, меряем их через canvas
+  var mark = document.querySelector('.wordmark');
+  var bandTicker = document.querySelector('.brandband .ticker');
+  function placeTicker(){
+    if (!mark || !bandTicker) return;
+    // строка текста выше самих букв: срезаем пустоту сверху и снизу
+    // отрицательными полями, чтобы полоса обнимала надпись вплотную
+    mark.style.margin = '0';
+    var cs = getComputedStyle(mark);
+    var ctx = document.createElement('canvas').getContext('2d');
+    ctx.font = cs.fontWeight + ' ' + cs.fontSize + ' ' + cs.fontFamily;
+    var m = ctx.measureText(mark.textContent);
+    var box = mark.offsetHeight;
+    var lead = (box - (m.fontBoundingBoxAscent + m.fontBoundingBoxDescent)) / 2;
+    var inkTop = lead + m.fontBoundingBoxAscent - m.actualBoundingBoxAscent;
+    var inkH = m.actualBoundingBoxAscent + m.actualBoundingBoxDescent;
+    mark.style.marginTop = (-inkTop) + 'px';
+    mark.style.marginBottom = (inkTop + inkH - box) + 'px';
+    // строчные буквы читаются по «телу» строки, а не по выносному элементу «h»,
+    // поэтому центруем по середине x-height, иначе строка кажется задранной вверх
+    var xh = ctx.measureText('x').actualBoundingBoxAscent;
+    var baselineIn = m.actualBoundingBoxAscent;      // от верха букв до базовой линии
+    bandTicker.style.top = (mark.offsetTop + baselineIn - xh / 2) + 'px';
+  }
+  placeTicker();
+  window.addEventListener('resize', placeTicker);
+  if (document.fonts && document.fonts.ready) document.fonts.ready.then(placeTicker);
+  if (document.fonts && document.fonts.ready) document.fonts.ready.then(placeSocials);
+
+  window.addEventListener('scroll', onScroll, {passive:true});
+  window.addEventListener('resize', revealVisible);
+  window.addEventListener('hashchange', function(){ setTimeout(revealVisible, 60); });
+  onScroll();
+  setTimeout(revealVisible, 400);
+})();
+</script>

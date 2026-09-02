@@ -1,0 +1,88 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="color-scheme" content="dark">
+<title>Марсэж — два макета лендинга</title>
+<meta name="description" content="Два варианта дизайна персонального сайта ИИ-креатора Марсэжа.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&display=swap">
+<style>
+:root{--void:#060606; --paper:#fff; --smoke:#a2a2a2; --smoke-2:#6c6c6c;
+  --line:rgba(255,255,255,.12); --line-2:rgba(255,255,255,.26); --clay:#d68a6b}
+*{box-sizing:border-box}
+body{margin:0; min-height:100svh; background:var(--void); color:var(--paper);
+  font-family:"Manrope","Helvetica Neue",Arial,sans-serif; -webkit-font-smoothing:antialiased;
+  display:flex; flex-direction:column; justify-content:center;
+  padding:56px 28px; gap:44px}
+a{color:inherit}
+.head{max-width:1180px; margin:0 auto; width:100%}
+.brand{display:flex; align-items:center; gap:11px}
+.bead{width:26px; height:26px; border-radius:9px;
+  background:radial-gradient(120% 120% at 32% 26%, #f0b294, var(--clay) 46%, #8e4e38)}
+.brand b{font-size:18px; font-weight:800; letter-spacing:-.02em}
+h1{margin:26px 0 0; font-size:clamp(28px,4vw,46px); font-weight:800;
+  letter-spacing:-.045em; line-height:1.06; text-wrap:balance; max-width:20ch}
+h1 span{color:#8d8d8d}
+.head p{margin:16px 0 0; color:var(--smoke); font-size:16px; max-width:52ch}
+.grid{max-width:1180px; margin:0 auto; width:100%;
+  display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:22px}
+.card{display:flex; flex-direction:column; gap:18px; text-decoration:none;
+  border:1px solid var(--line); border-radius:22px; padding:22px;
+  transition:border-color .25s ease, background .25s ease}
+.card:hover{border-color:var(--line-2); background:rgba(255,255,255,.03)}
+.thumb{border-radius:14px; aspect-ratio:16/10; overflow:hidden; position:relative;
+  border:1px solid var(--line)}
+.thumb span{position:absolute; inset:0; display:grid; place-items:center;
+  font-size:clamp(26px,3.6vw,44px); font-weight:800; letter-spacing:-.05em}
+.t-light{background:#eef3f7} .t-light span{color:#0a1017}
+.t-light span i{font-style:normal; color:#0b7f97}
+.t-dark{background:#0c0c0c} .t-dark span{color:#fff}
+.t-dark span i{font-style:normal; color:var(--clay)}
+.meta{display:flex; align-items:center; justify-content:space-between; gap:16px}
+.meta b{display:block; font-size:17px; font-weight:700; letter-spacing:-.02em}
+.meta em{display:block; font-style:normal; font-size:13.5px; color:var(--smoke-2); margin-top:3px}
+.go{flex:none; display:inline-flex; align-items:center; gap:10px; height:36px;
+  padding:0 5px 0 18px; border-radius:999px; background:var(--paper); color:#060606;
+  font-size:13px; font-weight:600; transition:background .22s ease}
+.go i{width:26px; height:26px; border-radius:50%; background:#060606; color:#fff;
+  display:grid; place-items:center; font-style:normal}
+.go svg{width:11px; height:11px}
+.card:hover .go{background:#f0b294}
+footer{max-width:1180px; margin:0 auto; width:100%; color:var(--smoke-2); font-size:12.5px;
+  letter-spacing:.06em; text-transform:uppercase; font-weight:700}
+@media(max-width:760px){ .grid{grid-template-columns:1fr} body{gap:32px; padding:40px 20px} }
+</style>
+</head>
+<body>
+
+<div class="head">
+  <div class="brand"><span class="bead"></span><b>Marsezh.</b></div>
+  <h1>Два макета лендинга. <span>Выбери, какой собираем.</span></h1>
+  <p>Обе страницы на одном контенте и на реальной статистике профилей. Отличается подача:
+     светлая — техно-редакционная, тёмная — по структуре референса с Behance.</p>
+</div>
+
+<div class="grid">
+  <a class="card" href="light.html">
+    <span class="thumb t-light"><span>Светлая<i>.</i></span></span>
+    <span class="meta">
+      <span><b>Вариант 1 — светлый</b><em>Циан-акцент, крупная типографика</em></span>
+      <span class="go">Открыть <i><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h13M13 6l6 6-6 6"/></svg></i></span>
+    </span>
+  </a>
+  <a class="card" href="dark.html">
+    <span class="thumb t-dark"><span>Тёмная<i>.</i></span></span>
+    <span class="meta">
+      <span><b>Вариант 2 — тёмный</b><em>Терракота, структура Behance</em></span>
+      <span class="go">Открыть <i><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h13M13 6l6 6-6 6"/></svg></i></span>
+    </span>
+  </a>
+</div>
+
+<footer>Марсэж · AI-креатор · @marsezh.ai</footer>
+
+</body>
+</html>
