@@ -1,5 +1,26 @@
 # Лендинг marsezh.ai — два макета
 
+## Публичные адреса (GitHub Pages)
+
+| страница | адрес |
+|---|---|
+| выбор варианта | https://digitl123.github.io/marsezh/ |
+| светлый макет | https://digitl123.github.io/marsezh/light.html |
+| тёмный макет | https://digitl123.github.io/marsezh/dark.html |
+
+Открываются у любого без входа в аккаунт — эти ссылки можно отправлять клиенту.
+Репозиторий: https://github.com/digitl123/marsezh
+
+## Как выкатить правки
+```
+./deploy.sh
+git add -A && git commit -m "правки" && git push
+```
+`deploy.sh` пересобирает обе версии и копирует их в `docs/`, откуда их отдаёт
+GitHub Pages. Обновление на сайте появляется через 1–2 минуты после push.
+
+## Приватные превью в Claude (только для владельца)
+
 | версия | ссылка | файл |
 |---|---|---|
 | **Светлая** (stackbyte + Behance, циан) | https://claude.ai/code/artifact/0d077880-ac7e-4fa3-aa40-d19b2046a653 | `index.html` |
