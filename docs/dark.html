@@ -89,9 +89,10 @@ p{margin:0}
 /* круглые иконки соцсетей — форма из референса, цвет его */
 .circles{display:flex; gap:10px}
 .circ{width:44px; height:44px; border-radius:50%; display:grid; place-items:center;
-  background:var(--clay); color:#1a0d07; text-decoration:none;
-  transition:background .2s, transform .2s}
-.circ:hover{background:var(--clay-hi); transform:translateY(-3px)}
+  background:var(--clay); color:#160b06; text-decoration:none;
+  border:1px solid var(--clay);
+  transition:background .22s ease, color .22s ease, border-color .22s ease}
+.circ:hover{background:#060606; color:var(--clay); border-color:var(--clay)}
 .circ svg{width:19px; height:19px}
 
 /* ============ шапка ============ */
@@ -119,7 +120,8 @@ nav a.on{color:var(--clay); background:var(--panel-2)}
 .role-tag{flex:none; margin-left:52px; font-size:14px; font-weight:600; color:var(--smoke)}
 .burger{display:none; background:none; border:1px solid var(--line-2); color:var(--paper);
   border-radius:999px; padding:9px 17px; font:inherit; font-weight:700; font-size:13px; cursor:pointer}
-@media(max-width:1080px){
+/* до 1199 меню не помещается рядом с соцсетями и подписью — уводим в бургер */
+@media(max-width:1199px){
   :root{--hh:70px}
   nav{display:none; position:absolute; top:100%; left:0; right:0; translate:0 0;
     flex-direction:column; gap:0; background:var(--panel);
@@ -177,7 +179,8 @@ nav a.on{color:var(--clay); background:var(--panel-2)}
 .idcard > p{font-size:13.5px; color:var(--smoke); line-height:1.5;
   padding-top:16px; border-top:1px solid var(--line)}
 
-@media(max-width:1080px){
+/* до 899 первый экран становится вертикальным: фото наверх, всё в одну колонку */
+@media(max-width:899px){
   .hero{min-height:0; padding:30px 0 44px}
   .hero > .wrap{grid-template-columns:1fr; gap:30px}
   .hero-scrim{display:none}
@@ -189,7 +192,8 @@ nav a.on{color:var(--clay); background:var(--panel-2)}
   .idcard{max-width:none}
   .hero-bottom{max-width:none}
 }
-@media(min-width:1081px) and (max-height:820px){
+/* низкие экраны ноутбуков и планшет в альбомной ориентации */
+@media(min-width:900px) and (max-height:820px){
   h1{font-size:clamp(34px,3.4vw,46px)}
   .hero-l .role{margin-top:12px; font-size:15px}
   .acts .pill{height:34px; padding:0 4px 0 16px; font-size:12.5px; gap:9px}
@@ -205,7 +209,7 @@ section{padding:56px 0; scroll-margin-top:var(--hh); position:relative}
 
 .sec-head{display:grid; grid-template-columns:200px minmax(0,1fr); gap:44px; margin-bottom:44px}
 .sec-head .lead{font-size:15px; color:var(--smoke); max-width:34ch; margin-top:16px}
-@media(max-width:900px){
+@media(max-width:899px){
   .sec-head{grid-template-columns:1fr; gap:16px; margin-bottom:44px}
 }
 
@@ -221,7 +225,7 @@ section{padding:56px 0; scroll-margin-top:var(--hh); position:relative}
 .fact dt{font-size:10.5px; font-weight:800; letter-spacing:.16em; text-transform:uppercase; color:var(--smoke-2)}
 .fact dd{margin:0; font-size:15.5px; font-weight:700}
 .fact dd span{display:block; font-weight:500; color:var(--smoke); font-size:13.5px; margin-top:3px}
-@media(max-width:900px){.about{grid-template-columns:1fr; gap:40px}}
+@media(max-width:899px){.about{grid-template-columns:1fr; gap:40px}}
 
 /* ============ услуги: «призрачный» заголовок + карточки 01–03 ============ */
 .svc-wrap{position:relative}
@@ -249,7 +253,10 @@ section{padding:56px 0; scroll-margin-top:var(--hh); position:relative}
   display:flex; justify-content:space-between; gap:14px; font-size:11px; font-weight:800;
   letter-spacing:.14em; text-transform:uppercase; color:var(--smoke-2)}
 .svc-foot b{color:var(--clay); font-weight:800}
-@media(max-width:1000px){
+@media(max-width:1099px){
+  .svc{grid-template-columns:repeat(2,minmax(0,1fr))}
+}
+@media(max-width:699px){
   .svc{grid-template-columns:1fr}
 }
 
@@ -260,7 +267,7 @@ section{padding:56px 0; scroll-margin-top:var(--hh); position:relative}
 .wordmark{position:relative; z-index:0; pointer-events:none; white-space:nowrap;
   text-align:center; font-size:25.5vw; font-weight:800; letter-spacing:-.055em;
   line-height:.78; color:transparent; -webkit-text-stroke:1.6px #ffffff; opacity:.2}
-@media(max-width:900px){
+@media(max-width:899px){
   .brandband{padding:0}
   .wordmark{font-size:30vw; -webkit-text-stroke-width:1.1px}
 }
@@ -284,7 +291,7 @@ section{padding:56px 0; scroll-margin-top:var(--hh); position:relative}
 .step b{display:block; font-size:12px; font-weight:800; letter-spacing:.18em; color:var(--clay)}
 .step h3{font-size:17px; margin-top:14px}
 .step p{font-size:14px; color:var(--smoke); margin-top:8px}
-@media(max-width:900px){
+@media(max-width:899px){
   .steps{grid-template-columns:1fr 1fr}
   .step{padding:20px 18px 20px 0}
   .step:nth-child(odd){border-left:0; padding-left:0}
@@ -302,7 +309,7 @@ section{padding:56px 0; scroll-margin-top:var(--hh); position:relative}
   color:var(--clay)}
 .wrow h3{font-size:18px}
 .wrow p{font-size:14.5px; color:var(--smoke)}
-@media(max-width:1000px){
+@media(max-width:899px){
   .wrow{grid-template-columns:44px 1fr; gap:6px 18px; padding:22px 0}
   .wrow .val{grid-column:2}
   .wrow h3, .wrow p{grid-column:2}
@@ -333,10 +340,10 @@ section{padding:56px 0; scroll-margin-top:var(--hh); position:relative}
   padding:9px 16px; border-radius:999px; background:var(--paper); color:#000;
   transition:background .2s, color .2s}
 .work:hover .watch{background:var(--clay); color:#1a0d07}
-@media(max-width:1000px){
+@media(max-width:899px){
   .works{grid-template-columns:repeat(2,minmax(0,1fr)); gap:16px}
 }
-@media(max-width:620px){
+@media(max-width:520px){
   .works{grid-template-columns:repeat(2,minmax(0,1fr)); gap:12px}
   .work .views{font-size:18px}
   .work .meta{flex-direction:column; align-items:flex-start; gap:4px}
@@ -357,7 +364,7 @@ section{padding:56px 0; scroll-margin-top:var(--hh); position:relative}
 .plat .kv{display:flex; justify-content:space-between; align-items:baseline; gap:12px;
   font-size:14px; color:var(--smoke); padding:9px 0}
 .plat .kv b{font-size:19px; font-weight:800; letter-spacing:-.03em; color:var(--paper)}
-@media(max-width:900px){
+@media(max-width:899px){
   .plat{grid-template-columns:1fr}
   .plat > div{border-left:0; padding:26px 0; border-top:1px solid var(--line)}
   .plat > div:first-child{border-top:0}
@@ -381,7 +388,7 @@ section{padding:56px 0; scroll-margin-top:var(--hh); position:relative}
   padding-top:14px; border-top:1px solid var(--line)}
 .axis span{font-size:11.5px; color:var(--smoke-2); text-align:center; line-height:1.3; min-width:0}
 .src{margin-top:26px; font-size:12px; color:var(--smoke-2)}
-@media(max-width:820px){
+@media(max-width:899px){
   .cols,.axis{grid-template-columns:repeat(4,1fr); gap:9px}
   .cols{height:196px}
   .col .cv{font-size:12.5px}
@@ -413,7 +420,7 @@ section{padding:56px 0; scroll-margin-top:var(--hh); position:relative}
 .contact .big a:hover{color:var(--clay-hi)}
 .contact .pill{width:100%; justify-content:space-between; margin:22px 0 20px}
 .contact .circles{padding-top:20px; border-top:1px solid var(--line)}
-@media(max-width:900px){.final-grid{grid-template-columns:1fr; gap:36px}}
+@media(max-width:899px){.final-grid{grid-template-columns:1fr; gap:36px}}
 
 footer{border-top:1px solid var(--line)}
 .fmain{display:flex; align-items:center; justify-content:space-between; gap:24px;
@@ -425,7 +432,7 @@ footer{border-top:1px solid var(--line)}
   letter-spacing:.16em; text-transform:uppercase; color:var(--smoke-2);
   border-left:1px solid var(--line)}
 .fstrip span:first-child{border-left:0}
-@media(max-width:760px){.fstrip{grid-template-columns:1fr}
+@media(max-width:899px){.fstrip{grid-template-columns:1fr}
   .fstrip span{border-left:0; border-top:1px solid var(--line)}
   .fstrip span:first-child{border-top:0}}
 
@@ -439,14 +446,31 @@ footer{border-top:1px solid var(--line)}
 }
 
 /* узкие телефоны */
-@media(max-width:440px){
+/* телефоны: шапка ужимается в два шага, на узких бургер становится иконкой */
+@media(max-width:520px){
   .wrap{padding:0 20px}
+  .hbar{gap:12px}
   .logo b{font-size:17px}
+  .logo .bead{width:24px; height:24px}
   .burger{padding:8px 14px; font-size:12.5px}
   .circ{width:40px; height:40px}
+  .head-soc{gap:6px}
   .head-soc .circ{width:32px; height:32px}
   .head-soc .circ svg{width:15px; height:15px}
-  .head-soc{gap:6px}
+}
+@media(max-width:400px){
+  .wrap{padding:0 16px}
+  .hbar{gap:8px}
+  .logo b{font-size:15px}
+  .logo .bead{width:22px; height:22px}
+  .head-soc{gap:5px}
+  .head-soc .circ{width:30px; height:30px}
+  .head-soc .circ svg{width:14px; height:14px}
+  .burger{width:34px; height:34px; padding:0; border-radius:50%; font-size:0; position:relative}
+  .burger::before, .burger::after{content:""; position:absolute; left:9px; right:9px;
+    height:1.5px; background:currentColor; border-radius:2px}
+  .burger::before{top:13px}
+  .burger::after{bottom:13px}
 }
 </style>
 
@@ -463,9 +487,9 @@ footer{border-top:1px solid var(--line)}
       <a href="#stats">Аналитика</a>
     </nav>
     <div class="head-soc circles">
-      <a class="circ" href="https://www.instagram.com/marsezh.ai/" target="_blank" rel="noopener" aria-label="Instagram @marsezh.ai"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1.2" fill="currentColor" stroke="none"/></svg></a>
-      <a class="circ" href="https://www.tiktok.com/@marsezh.ai" target="_blank" rel="noopener" aria-label="TikTok @marsezh.ai"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9"><path d="M15 3.5c.4 2.6 2 4.2 4.6 4.5v3.2c-1.8.1-3.4-.4-4.8-1.4v5.9c0 3.6-2.7 5.9-5.9 5.5-2.7-.3-4.7-2.5-4.8-5.2-.1-3.1 2.4-5.7 5.6-5.6v3.3c-1.3-.3-2.5.6-2.5 1.9 0 1.2 1 2.1 2.2 2.1 1.3 0 2.2-.9 2.2-2.3V3.5H15z"/></svg></a>
-      <a class="circ" href="https://tgclick.com/marsezhai" target="_blank" rel="noopener" aria-label="Telegram-канал marsezhai"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9"><path d="M21 4 3 10.5l5 1.8L18.5 6.8 10.5 14v4.6l2.7-3.2 4.6 3.4L21 4z"/></svg></a>
+      <a class="circ" href="https://www.instagram.com/marsezh.ai/" target="_blank" rel="noopener" aria-label="Instagram @marsezh.ai"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2.16c3.2 0 3.58.01 4.85.07 1.17.06 1.8.25 2.23.42.56.21.96.47 1.38.89.42.42.68.82.9 1.38.16.43.36 1.06.41 2.23.06 1.27.07 1.65.07 4.85s-.01 3.58-.07 4.85c-.05 1.17-.25 1.8-.41 2.23-.22.56-.48.96-.9 1.38-.42.42-.82.68-1.38.9-.43.16-1.06.36-2.23.41-1.27.06-1.65.07-4.85.07s-3.58-.01-4.85-.07c-1.17-.05-1.8-.25-2.23-.41-.56-.22-.96-.48-1.38-.9-.42-.42-.68-.82-.9-1.38-.17-.43-.36-1.06-.42-2.23C2.17 15.58 2.16 15.2 2.16 12s.01-3.58.07-4.85c.06-1.17.25-1.8.42-2.23.21-.56.47-.96.89-1.38.42-.42.82-.68 1.38-.89.43-.17 1.06-.36 2.23-.42C8.42 2.17 8.8 2.16 12 2.16M12 0C8.74 0 8.33.01 7.05.07S4.9.33 4.14.63a5.9 5.9 0 0 0-2.13 1.38A5.9 5.9 0 0 0 .63 4.14C.33 4.9.13 5.78.07 7.05.01 8.33 0 8.74 0 12s.01 3.67.07 4.95c.06 1.27.26 2.15.56 2.91a5.9 5.9 0 0 0 1.38 2.13 5.9 5.9 0 0 0 2.13 1.38c.76.3 1.64.5 2.91.56C8.33 23.99 8.74 24 12 24s3.67-.01 4.95-.07c1.27-.06 2.15-.26 2.91-.56a5.9 5.9 0 0 0 2.13-1.38 5.9 5.9 0 0 0 1.38-2.13c.3-.76.5-1.64.56-2.91.06-1.28.07-1.69.07-4.95s-.01-3.67-.07-4.95c-.06-1.27-.26-2.15-.56-2.91a5.9 5.9 0 0 0-1.38-2.13A5.9 5.9 0 0 0 19.86.63c-.76-.3-1.64-.5-2.91-.56C15.67.01 15.26 0 12 0z"/><path d="M12 5.84A6.16 6.16 0 1 0 18.16 12 6.16 6.16 0 0 0 12 5.84zM12 16a4 4 0 1 1 4-4 4 4 0 0 1-4 4z"/><circle cx="18.41" cy="5.59" r="1.44"/></svg></a>
+      <a class="circ" href="https://www.tiktok.com/@marsezh.ai" target="_blank" rel="noopener" aria-label="TikTok @marsezh.ai"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M16.6 5.82A4.28 4.28 0 0 1 15.54 3h-3.09v12.4a2.59 2.59 0 0 1-2.59 2.5 2.59 2.59 0 1 1 .77-5.06V9.69a5.67 5.67 0 0 0-.77-.05A5.66 5.66 0 1 0 15.54 15.3V8.78a7.35 7.35 0 0 0 4.3 1.38V7.07a4.29 4.29 0 0 1-3.24-1.25z"/></svg></a>
+      <a class="circ" href="https://tgclick.com/marsezhai" target="_blank" rel="noopener" aria-label="Telegram-канал marsezhai"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M21.94 4.4 18.9 19.1c-.23 1.02-.84 1.27-1.7.79l-4.7-3.46-2.27 2.18c-.25.25-.46.46-.95.46l.34-4.8 8.73-7.9c.38-.34-.08-.53-.59-.19L6.98 12.98 2.34 11.5c-1.01-.32-1.03-1.01.21-1.5l18.13-6.99c.84-.31 1.58.2 1.26 1.39z"/></svg></a>
     </div>
     <span class="role-tag">Портфолио ИИ-креатора</span>
     <button class="burger" id="burger" aria-expanded="false" aria-controls="nav">Меню</button>
@@ -685,21 +709,21 @@ footer{border-top:1px solid var(--line)}
 
       <div class="plat rv">
         <div>
-          <div class="ph"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1.2" fill="currentColor" stroke="none"/></svg><b>Instagram</b><span>@marsezh.ai</span></div>
+          <div class="ph"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2.16c3.2 0 3.58.01 4.85.07 1.17.06 1.8.25 2.23.42.56.21.96.47 1.38.89.42.42.68.82.9 1.38.16.43.36 1.06.41 2.23.06 1.27.07 1.65.07 4.85s-.01 3.58-.07 4.85c-.05 1.17-.25 1.8-.41 2.23-.22.56-.48.96-.9 1.38-.42.42-.82.68-1.38.9-.43.16-1.06.36-2.23.41-1.27.06-1.65.07-4.85.07s-3.58-.01-4.85-.07c-1.17-.05-1.8-.25-2.23-.41-.56-.22-.96-.48-1.38-.9-.42-.42-.68-.82-.9-1.38-.17-.43-.36-1.06-.42-2.23C2.17 15.58 2.16 15.2 2.16 12s.01-3.58.07-4.85c.06-1.17.25-1.8.42-2.23.21-.56.47-.96.89-1.38.42-.42.82-.68 1.38-.89.43-.17 1.06-.36 2.23-.42C8.42 2.17 8.8 2.16 12 2.16M12 0C8.74 0 8.33.01 7.05.07S4.9.33 4.14.63a5.9 5.9 0 0 0-2.13 1.38A5.9 5.9 0 0 0 .63 4.14C.33 4.9.13 5.78.07 7.05.01 8.33 0 8.74 0 12s.01 3.67.07 4.95c.06 1.27.26 2.15.56 2.91a5.9 5.9 0 0 0 1.38 2.13 5.9 5.9 0 0 0 2.13 1.38c.76.3 1.64.5 2.91.56C8.33 23.99 8.74 24 12 24s3.67-.01 4.95-.07c1.27-.06 2.15-.26 2.91-.56a5.9 5.9 0 0 0 2.13-1.38 5.9 5.9 0 0 0 1.38-2.13c.3-.76.5-1.64.56-2.91.06-1.28.07-1.69.07-4.95s-.01-3.67-.07-4.95c-.06-1.27-.26-2.15-.56-2.91a5.9 5.9 0 0 0-1.38-2.13A5.9 5.9 0 0 0 19.86.63c-.76-.3-1.64-.5-2.91-.56C15.67.01 15.26 0 12 0z"/><path d="M12 5.84A6.16 6.16 0 1 0 18.16 12 6.16 6.16 0 0 0 12 5.84zM12 16a4 4 0 1 1 4-4 4 4 0 0 1-4 4z"/><circle cx="18.41" cy="5.59" r="1.44"/></svg><b>Instagram</b><span>@marsezh.ai</span></div>
           <div class="kv"><span>Просмотров</span><b class="tnum">8,3 млн</b></div>
           <div class="kv"><span>Подписчиков</span><b class="tnum">8 186</b></div>
           <div class="kv"><span>Роликов</span><b class="tnum">32</b></div>
           <div class="kv"><span>Лучший ролик</span><b class="tnum">3,6 млн</b></div>
         </div>
         <div>
-          <div class="ph"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9"><path d="M15 3.5c.4 2.6 2 4.2 4.6 4.5v3.2c-1.8.1-3.4-.4-4.8-1.4v5.9c0 3.6-2.7 5.9-5.9 5.5-2.7-.3-4.7-2.5-4.8-5.2-.1-3.1 2.4-5.7 5.6-5.6v3.3c-1.3-.3-2.5.6-2.5 1.9 0 1.2 1 2.1 2.2 2.1 1.3 0 2.2-.9 2.2-2.3V3.5H15z"/></svg><b>TikTok</b><span>@marsezh.ai</span></div>
+          <div class="ph"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M16.6 5.82A4.28 4.28 0 0 1 15.54 3h-3.09v12.4a2.59 2.59 0 0 1-2.59 2.5 2.59 2.59 0 1 1 .77-5.06V9.69a5.67 5.67 0 0 0-.77-.05A5.66 5.66 0 1 0 15.54 15.3V8.78a7.35 7.35 0 0 0 4.3 1.38V7.07a4.29 4.29 0 0 1-3.24-1.25z"/></svg><b>TikTok</b><span>@marsezh.ai</span></div>
           <div class="kv"><span>Просмотров</span><b class="tnum">13,6 млн</b></div>
           <div class="kv"><span>Подписчиков</span><b class="tnum">7 504</b></div>
           <div class="kv"><span>Лайков</span><b class="tnum">1,1 млн</b></div>
           <div class="kv"><span>Лучший ролик</span><b class="tnum">4,4 млн</b></div>
         </div>
         <div>
-          <div class="ph"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9"><path d="M21 4 3 10.5l5 1.8L18.5 6.8 10.5 14v4.6l2.7-3.2 4.6 3.4L21 4z"/></svg><b>Telegram</b><span>marsezhai</span></div>
+          <div class="ph"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M21.94 4.4 18.9 19.1c-.23 1.02-.84 1.27-1.7.79l-4.7-3.46-2.27 2.18c-.25.25-.46.46-.95.46l.34-4.8 8.73-7.9c.38-.34-.08-.53-.59-.19L6.98 12.98 2.34 11.5c-1.01-.32-1.03-1.01.21-1.5l18.13-6.99c.84-.31 1.58.2 1.26 1.39z"/></svg><b>Telegram</b><span>marsezhai</span></div>
           <div class="kv"><span>Подписчиков</span><b class="tnum">803</b></div>
           <div class="kv"><span>Туторов и промтов</span><b class="tnum">11 файлов</b></div>
           <div class="kv"><span>Видео в канале</span><b class="tnum">24</b></div>
@@ -757,9 +781,9 @@ footer{border-top:1px solid var(--line)}
         <div class="big"><a href="https://t.me/marsedzhan" target="_blank" rel="noopener">@marsedzhan</a></div>
         <a class="pill" href="https://t.me/marsedzhan" target="_blank" rel="noopener">Написать в Telegram <span class="chip"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17 17 7M9 7h8v8"/></svg></span></a>
         <div class="circles">
-          <a class="circ" href="https://www.instagram.com/marsezh.ai/" target="_blank" rel="noopener" aria-label="Instagram @marsezh.ai"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1.2" fill="currentColor" stroke="none"/></svg></a>
-          <a class="circ" href="https://www.tiktok.com/@marsezh.ai" target="_blank" rel="noopener" aria-label="TikTok @marsezh.ai"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9"><path d="M15 3.5c.4 2.6 2 4.2 4.6 4.5v3.2c-1.8.1-3.4-.4-4.8-1.4v5.9c0 3.6-2.7 5.9-5.9 5.5-2.7-.3-4.7-2.5-4.8-5.2-.1-3.1 2.4-5.7 5.6-5.6v3.3c-1.3-.3-2.5.6-2.5 1.9 0 1.2 1 2.1 2.2 2.1 1.3 0 2.2-.9 2.2-2.3V3.5H15z"/></svg></a>
-          <a class="circ" href="https://tgclick.com/marsezhai" target="_blank" rel="noopener" aria-label="Telegram-канал с туторами"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9"><path d="M21 4 3 10.5l5 1.8L18.5 6.8 10.5 14v4.6l2.7-3.2 4.6 3.4L21 4z"/></svg></a>
+          <a class="circ" href="https://www.instagram.com/marsezh.ai/" target="_blank" rel="noopener" aria-label="Instagram @marsezh.ai"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2.16c3.2 0 3.58.01 4.85.07 1.17.06 1.8.25 2.23.42.56.21.96.47 1.38.89.42.42.68.82.9 1.38.16.43.36 1.06.41 2.23.06 1.27.07 1.65.07 4.85s-.01 3.58-.07 4.85c-.05 1.17-.25 1.8-.41 2.23-.22.56-.48.96-.9 1.38-.42.42-.82.68-1.38.9-.43.16-1.06.36-2.23.41-1.27.06-1.65.07-4.85.07s-3.58-.01-4.85-.07c-1.17-.05-1.8-.25-2.23-.41-.56-.22-.96-.48-1.38-.9-.42-.42-.68-.82-.9-1.38-.17-.43-.36-1.06-.42-2.23C2.17 15.58 2.16 15.2 2.16 12s.01-3.58.07-4.85c.06-1.17.25-1.8.42-2.23.21-.56.47-.96.89-1.38.42-.42.82-.68 1.38-.89.43-.17 1.06-.36 2.23-.42C8.42 2.17 8.8 2.16 12 2.16M12 0C8.74 0 8.33.01 7.05.07S4.9.33 4.14.63a5.9 5.9 0 0 0-2.13 1.38A5.9 5.9 0 0 0 .63 4.14C.33 4.9.13 5.78.07 7.05.01 8.33 0 8.74 0 12s.01 3.67.07 4.95c.06 1.27.26 2.15.56 2.91a5.9 5.9 0 0 0 1.38 2.13 5.9 5.9 0 0 0 2.13 1.38c.76.3 1.64.5 2.91.56C8.33 23.99 8.74 24 12 24s3.67-.01 4.95-.07c1.27-.06 2.15-.26 2.91-.56a5.9 5.9 0 0 0 2.13-1.38 5.9 5.9 0 0 0 1.38-2.13c.3-.76.5-1.64.56-2.91.06-1.28.07-1.69.07-4.95s-.01-3.67-.07-4.95c-.06-1.27-.26-2.15-.56-2.91a5.9 5.9 0 0 0-1.38-2.13A5.9 5.9 0 0 0 19.86.63c-.76-.3-1.64-.5-2.91-.56C15.67.01 15.26 0 12 0z"/><path d="M12 5.84A6.16 6.16 0 1 0 18.16 12 6.16 6.16 0 0 0 12 5.84zM12 16a4 4 0 1 1 4-4 4 4 0 0 1-4 4z"/><circle cx="18.41" cy="5.59" r="1.44"/></svg></a>
+          <a class="circ" href="https://www.tiktok.com/@marsezh.ai" target="_blank" rel="noopener" aria-label="TikTok @marsezh.ai"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M16.6 5.82A4.28 4.28 0 0 1 15.54 3h-3.09v12.4a2.59 2.59 0 0 1-2.59 2.5 2.59 2.59 0 1 1 .77-5.06V9.69a5.67 5.67 0 0 0-.77-.05A5.66 5.66 0 1 0 15.54 15.3V8.78a7.35 7.35 0 0 0 4.3 1.38V7.07a4.29 4.29 0 0 1-3.24-1.25z"/></svg></a>
+          <a class="circ" href="https://tgclick.com/marsezhai" target="_blank" rel="noopener" aria-label="Telegram-канал с туторами"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M21.94 4.4 18.9 19.1c-.23 1.02-.84 1.27-1.7.79l-4.7-3.46-2.27 2.18c-.25.25-.46.46-.95.46l.34-4.8 8.73-7.9c.38-.34-.08-.53-.59-.19L6.98 12.98 2.34 11.5c-1.01-.32-1.03-1.01.21-1.5l18.13-6.99c.84-.31 1.58.2 1.26 1.39z"/></svg></a>
         </div>
       </div>
     </div>
@@ -839,7 +863,7 @@ footer{border-top:1px solid var(--line)}
   var soc = document.querySelector('.head-soc');
   var role = document.querySelector('.role-tag');
   function placeSocials(){
-    if (!window.matchMedia('(min-width:1081px)').matches){
+    if (!window.matchMedia('(min-width:1200px)').matches){   // ниже меню уходит в бургер
       soc.classList.remove('centred');
       soc.style.left = '';
       return;
