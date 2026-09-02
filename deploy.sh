@@ -6,4 +6,5 @@ python3 build.py
 python3 build-dark.py
 cp index.html      docs/light.html
 cp index-dark.html docs/dark.html
+cp assets/mars.webp  docs/mars.webp
 echo "docs/ обновлён. Дальше: git add -A && git commit -m 'update' && git push"

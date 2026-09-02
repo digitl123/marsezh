@@ -88,8 +88,9 @@ header{position:sticky; top:0; z-index:80; padding:18px 0;
 header.stuck{border-bottom-color:var(--line)}
 .hbar{position:relative; display:flex; align-items:center; gap:20px}
 .logo{display:flex; align-items:center; gap:11px; text-decoration:none; flex:none}
-.logo .bead{width:28px; height:28px; border-radius:9px; flex:none;
-  background:radial-gradient(120% 120% at 32% 26%, var(--clay-hi), var(--clay) 46%, var(--clay-deep));
+/* логотип — вращающийся Марс, вырезанный по кругу (анимированный webp) */
+.logo .bead{width:28px; height:28px; border-radius:50%; flex:none;
+  background:url("{{MARS}}") center/cover no-repeat;
   box-shadow:0 6px 22px -8px var(--clay-glow)}
 .logo b{font-weight:800; font-size:19px; letter-spacing:-.02em}
 nav{display:flex; gap:2px; position:absolute; left:50%; translate:-50% 0}

@@ -2,7 +2,14 @@
 """Собирает тёмную версию: index-dark.html (файл) и artifact-dark.html (для публикации)."""
 import html, os
 
-from imgutil import enc, portrait
+import base64
+
+from imgutil import ASSETS, enc, portrait
+
+
+def asset_uri(fname, mime):
+    with open(os.path.join(ASSETS, fname), "rb") as f:
+        return f"data:{mime};base64," + base64.b64encode(f.read()).decode()
 
 ROOT = os.path.dirname(os.path.abspath(__file__))
 
@@ -92,6 +99,7 @@ tpl = tpl.replace("{{S3}}", enc("ig_38000_DciyxYPsQmu.jpg",  (720, 495), 80, 0.4
 tpl = tpl.replace("{{WORKS}}", works_html())
 tpl = tpl.replace("{{TICKER}}", ticker_html())
 tpl = tpl.replace("{{FORM}}", FORM_URL)
+tpl = tpl.replace("{{MARS}}", asset_uri("mars.webp", "image/webp"))
 tpl = tpl.replace("{{IC_IG}}", IC_IG).replace("{{IC_TT}}", IC_TT).replace("{{IC_TG}}", IC_TG)
 assert "{{" not in tpl, "остались незаполненные плейсхолдеры"
 
